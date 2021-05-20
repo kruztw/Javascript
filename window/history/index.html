@@ -1,0 +1,14 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <a onclick=window.history.back()> 上一頁 </a></br>
+        <a onclick=window.history.go(2)> 上上一頁 </a></br>
+        <a onclick=window.history.forward()> 下一頁 </a></br>
+        <a onclick=window.history.go(-2)> 下下一頁 </a></br>
+
+        <script>
+          history.pushState("", "", "#Taipei");
+        </script> 
+    </body>
+</html>

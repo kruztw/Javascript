@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    </head>
+
+    <body>
+        <p id="id1"></p>
+        <p id="id2"></p>
+    </body>
+
+    <form action="api.php" method="get">
+        <input type="text" name="arg" />
+    </form>
+
+    <button> done </button>
+
+    <script>
+        // https://www.fooish.com/jquery/ajax.html
+        $("#id1").load('test.html #p1');
+
+        $("#id2").load('test.html #p1', function(responseText, textStatus, jqXHR) {
+            console.log(responseText);
+            console.log($(this).html());
+            console.log(textStatus);
+        });
+
+        $.get('api.php', {arg: "1"});
+        $.get('api.php', {arg: "1"}, function(data) {
+            console.log(data);
+        });
+        
+        $.post('api.php', {arg: "2"});
+        $.post('api.php', {arg: "2"}, function(data) {
+            console.log(data);
+        });
+
+        $.getScript( "simple.js", function() {
+            console.log("call simple.js successfully");
+        });
+
+        $.ajax({
+            type: 'GET',
+            url: 'simple.js',
+            dataType: 'script'
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: 'api.php',
+            data: {arg: '3'},
+            success: function(msg) {
+                console.log(msg);
+          }
+        });
+
+        // 用 jsonp 跨領域請求
+        var flickerAPI = 'http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?';
+        $.getJSON(flickerAPI, {
+              tags: 'fuck',
+              tagmode: 'any',
+              format: 'json'
+        }, function(data) {
+              console.log(data);
+        })
+
+        $("form").on('submit', function(event) {
+            event.preventDefault();
+            console.log($(this).serialize());
+        });
+
+        var jqxhr = $.ajax('api.php')
+            .done(function() {
+                console.log('done');
+            })
+            .fail(function() {
+                console.log('fail');
+            })
+            .always(function() {
+                console.log('always');
+            });
+
+        $(document).ready(function() {
+            $("button").click(function() {
+                $("p").html("Hello <b>world</b>");
+            });
+         });
+    </script>
+
+
+</html>
