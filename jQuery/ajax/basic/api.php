@@ -6,4 +6,7 @@
        echo "GET: $GET_arg";
    if (isset($POST_arg))
        echo "POST: $POST_arg";
+   
+   if (!isset($GET_arg) && !isset($POST_arg))
+       echo "call api.php";
 ?>

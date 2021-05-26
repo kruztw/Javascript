@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    </head>
+
+    <body>
+        <a href="#!/page1/"> page1 </a>
+        <a href="#!/page2/"> page2 </a>
+        <div id="pagecontent"><div>
+    </body>
+
+    <script>
+        $(document).ready(function () {
+            $().ready(function() {
+                thisLocation = location.hash.split("#!/")[1];
+                get_page();
+
+                window.onhashchange = get_page;
+                async function get_page() {
+                    thisURL = location.hash.split('#!/')[1];
+                    if (thisLocation == null)
+                        location.hash = "#!/page1";
+
+                    thisURL = thisURL.split('/');
+                    thisLocation = thisURL[0];
+
+                    let response = await fetch('./'+thisLocation+'.html', {
+                        method: 'GET'
+                    }).then(res => {
+                        return res.text();
+                    })
+                    .then(data => {
+                        $('#pagecontent').html(data);
+                     });
+                }
+            });
+        });
+
+    </script>
+
+
+</html>

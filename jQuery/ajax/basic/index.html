@@ -8,8 +8,8 @@
         <p id="id2"></p>
     </body>
 
-    <form action="api.php" method="get">
-        <input type="text" name="arg" />
+    <form id="form1" action="" method="get">
+        <input type="text" name="arg" id="input1"/>
     </form>
 
     <button> done </button>
@@ -50,7 +50,10 @@
             data: {arg: '3'},
             success: function(msg) {
                 console.log(msg);
-          }
+            },
+            error: function(xhr, resp, text) {
+                alert`ERR`;
+            }
         });
 
         // 用 jsonp 跨領域請求
@@ -66,6 +69,22 @@
         $("form").on('submit', function(event) {
             event.preventDefault();
             console.log($(this).serialize());
+        });
+        
+        $("#form1").on('submit', function() {
+            $.ajax({
+                url: "api.php",
+                type: "POST",
+                datatype: "json",
+                contentType: "application/json",
+                data: JSON.stringify({"foo":"bar", "args":{"arg1":input1.value}}),
+                success: function(result) {
+                    console.log(result);
+                },
+                error: function(xhr, resp, text) {
+                    alert`ERR`;
+                }
+            });
         });
 
         var jqxhr = $.ajax('api.php')
