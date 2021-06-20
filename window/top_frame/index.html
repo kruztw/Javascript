@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <iframe src="a.html"></iframe>
+    <script>
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function foo() {
+            await sleep(1000);
+            console.log(window.top.frames[0].document.getElementsByTagName('p')[0].innerHTML);
+        }
+        foo();
+    </script>
+</body>
+</html>
+

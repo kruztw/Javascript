@@ -1,0 +1,19 @@
+<html>
+    <div>
+        <div>
+            a
+        </div>
+    </div>
+
+    <div>
+        <p> abc </p>
+    </div>
+
+<script>
+    console.log(document.getElementsByTagName('div')[1]);           // object    <div> a </div>
+    console.log(document.getElementsByTagName('div')[1].innerHTML); // string    "a"
+    console.log(document.getElementsByTagName('div')[2].innerHTML); // string    "<p> abc </p>"
+    console.log(document.getElementsByTagName('p')[0].innerHTML);   // string    "abc"
+</script>
+
+</html>
