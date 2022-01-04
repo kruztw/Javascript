@@ -10,7 +10,7 @@ f2 = function() { return 2; }
 console.log(f2());
 
 
-console.log( (function() { return 3; }()) );
+console.log( (function(a, b) { console.log("a+b =", a+b); return a+b; }(1, 2), function(){ return "callback"; }()) );
 
 
 // return the last value
