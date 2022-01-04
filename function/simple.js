@@ -11,3 +11,9 @@ console.log(f2());
 
 
 console.log( (function() { return 3; }()) );
+
+
+// return the last value
+function f3() { return 1, 2; }
+
+console.log(f3()); // 2
