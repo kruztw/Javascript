@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+
+    <body>
+	<h1 id="message"></h1>
+	<input name="message" type="text" value="Hello Javacript">
+	<script>
+		document.querySelector('#message').innerText = document.querySelector('[name="message"]').value;
+		document.querySelector('[name="message"]').addEventListener('input', (el) => {
+			document.querySelector('#message').innerText = el.target.value;
+		});
+	</script>
+    </body>
+</html>
