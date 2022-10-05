@@ -12,6 +12,12 @@
 		document.querySelector('[name="message"]').addEventListener('input', (el) => {
 			document.querySelector('#message').innerText = el.target.value;
 		});
+		document.querySelector('[name="message"]').addEventListener('copy', (el) => {
+			document.querySelector('#message').innerText = 'You pirate!';
+		});
+		document.querySelector('[name="message"]').addEventListener('click', (el) => {
+			document.querySelector('#message').innerText = 'Ouch';
+		});
 	</script>
     </body>
 </html>
