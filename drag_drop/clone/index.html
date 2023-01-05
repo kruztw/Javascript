@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+  <html>
+    <head>        
+        <link type="text/css" rel="stylesheet" href="a.css"  media="screen,projection"/>
+    </head>
+
+    <body>
+        <div id="drag-drop-basic">
+            <div id="source-container">
+                <div id="drag-source" draggable="true"></div>
+            </div>
+            <div id="target-container"></div>
+        </div> 
+
+        <script>
+            let cloneNum = 0;
+
+            let dragSource = document.querySelector('#drag-source')
+            dragSource.addEventListener('dragstart', dragStart)
+
+            function dragStart(e) {
+                e.dataTransfer.setData('text/plain', e.target.id)
+            }
+
+            let dropTarget = document.querySelector('#target-container')
+            dropTarget.addEventListener('drop', dropped)
+            dropTarget.addEventListener('dragenter', cancelDefault)
+            dropTarget.addEventListener('dragover', cancelDefault)
+
+            function dropped(e) {
+                cancelDefault(e)
+                let id = e.dataTransfer.getData('text/plain')
+                const clone = document.querySelector('#' + id).cloneNode(true);
+                cloneNum ++;
+                clone.id = "clone"+cloneNum.toString();
+                e.target.appendChild(clone);
+            }
+
+            function cancelDefault(e) {
+                e.preventDefault()
+                e.stopPropagation()
+                return false
+            }
+        </script>
+    </body>
+  </html>
